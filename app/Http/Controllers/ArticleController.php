@@ -39,16 +39,20 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:posts',
             'description' => 'required',
         ]);
 
-        $post = new Post(); 
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->description = $request->description;
+        $inputs = $request->only(['title', 'slug', 'description', 'published']);
+        $inputs['published'] = isset($inputs['published']) ? 1 : 0;
 
-        $post->save();
+        Post::create($inputs);
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->slug = $request->slug;
+        // $post->description = $request->description;
+        // $post->save();
+
         return redirect('/articles');
     }
 

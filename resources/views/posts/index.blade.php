@@ -2,6 +2,10 @@
 @section('pageTitle', 'Blog')
 @section('content')
 
+    @if (session('success'))
+        {{ session('success') }}
+    @endif
+
     <div class="grid grid-cols-12 gap-4">
         @forelse ($posts as $post)
             <div class="col-span-3 border-2 p-4 flex flex-col gap-4">

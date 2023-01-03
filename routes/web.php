@@ -25,15 +25,10 @@ Route::get('/', function () {
 Route::prefix('articles')->name('article.')->group(function () {
     // All articles
     Route::get('/', [ArticleController::class, 'index'])->name('index');
-
     Route::get('/create', [ArticleController::class, 'create'])->name('create');
-
     Route::get('/{id}', [ArticleController::class, 'show'])->name('show');
-
     Route::post('/', [ArticleController::class, 'store'])->name('store');
-
     Route::put('/{slug}', [ArticleController::class, 'update'])->name('update');
-
     Route::delete('/{slug}', [ArticleController::class, 'destroy'])->name('destroy');
 });
 
